@@ -10,7 +10,7 @@ GET     /products               controllers.HomeController.products(cat:Long ?=0
 
 GET     /productDetails		controllers.HomeController.productDetails
 
-GET 	/register		controllers.HomeController.register
+#GET 	/register		controllers.HomeController.register
 
 
 # An example controller showing how to use dependency injection

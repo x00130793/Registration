@@ -51,9 +51,9 @@ public class HomeController extends Controller {
         return ok(productDetails.render(getUserFromSession()));
     }
 
-    public Result register() {
-	return ok(register.render());
-    }
+  //  public Result register() {
+//	return ok(register.render());
+   // }
 	
     public Result products(Long cat) {
 
