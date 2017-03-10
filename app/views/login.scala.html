@@ -1,0 +1,62 @@
+@(loginForm: Form[models.users.Login], user: models.users.User)
+@import helper._
+
+@* Pass page title and content {html between braces} to the main view *@
+@main("Login", user) {
+
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+						@if(loginForm.hasGlobalErrors) {
+            						<p class="alert alert-warning">
+            					@loginForm.globalError.message
+           				</p>
+						}
+						@if(flash.containsKey("error")) {
+						    <div class="alert alert-warning">
+						    @flash.get("loginRequired")
+						    </div>
+						}
+						<form action="#">
+
+							<!-- The login form -->
+							@helper.form(action = controllers.security.routes.LoginController.loginSubmit()) {
+
+								<div class="form-group">
+								@inputText(loginForm("email"), '_label -> "",'class -> "form-control input-xs", 'placeholder -> "Email")
+								</div>
+								<div class="form-group">
+								@inputPassword(loginForm("password"), '_label -> "",'class -> "form-control input-xs", 'placeholder -> "Password")
+								</div>
+							@*<span>*@
+								@*<input type="checkbox" class="checkbox"> *@
+								@*Keep me signed in*@
+							@*</span>*@
+							@*<button type="submit" value="Sign In" class="btn btn-default">Login</button>*@
+							<div class="form-group"> <input type="submit" value="Sign In" class="btn btn-primary"> </div>
+						}
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User? Signup!</h2>
+						<form action="#">
+							<input type="text" placeholder="Name"/>
+							<input type="email" placeholder="Email Address"/>
+							<input type="password" placeholder="Password"/>
+							<button type="submit"  class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+
+}
