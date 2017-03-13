@@ -1,4 +1,4 @@
-package controllers.security;
+package controllers;
 
 import play.api.Environment;
 import play.mvc.*;

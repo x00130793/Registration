@@ -1,4 +1,4 @@
-@import controllers.security.LoginController
+@import controllers.LoginController
 @import controllers.security
 @(title: String, user: models.users.User)(content: Html)
 
@@ -86,9 +86,9 @@
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li @if(title == "Login"){class="active"}>
                                     @if(user != null) {
-                                        <a href="@controllers.security.routes.LoginController.logout()">Logout @user.getfName()</a>
+                                        <a href="@controllers.routes.LoginController.logout()">Logout @user.getfName()</a>
                                     } else {
-                                        <a href="@controllers.security.routes.LoginController.login()"><i class="fa fa-lock"></i> Login</a>
+                                        <a href="@controllers.routes.LoginController.login()"><i class="fa fa-lock"></i> Login</a>
                                     }
 
 								</li>

@@ -20,10 +20,10 @@
 						    @flash.get("loginRequired")
 						    </div>
 						}
-						<form action="#">
+						
 
 							<!-- The login form -->
-							@helper.form(action = controllers.security.routes.LoginController.loginSubmit()) {
+							@helper.form(action = controllers.routes.LoginController.loginSubmit()) {
 
 								<div class="form-group">
 								@inputText(loginForm("email"), '_label -> "",'class -> "form-control input-xs", 'placeholder -> "Email")
@@ -38,7 +38,7 @@
 							@*<button type="submit" value="Sign In" class="btn btn-default">Login</button>*@
 							<div class="form-group"> <input type="submit" value="Sign In" class="btn btn-primary"> </div>
 						}
-						</form>
+					
 					</div><!--/login form-->
 				</div>
 				<div class="col-sm-1">

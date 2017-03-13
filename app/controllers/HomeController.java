@@ -1,5 +1,7 @@
 package controllers;
 
+import controllers.*;
+import controllers.routes;
 import controllers.security.AuthAdmin;
 import controllers.security.Secured;
 import play.mvc.*;
@@ -72,6 +74,28 @@ public class HomeController extends Controller {
         }
 
         return ok(products.render(productsList, categoriesList, getUserFromSession()));
+    }
+
+    public Result signup(){
+        Form<User> addUserForm = formFactory.form(User.class);
+        return ok(signup.render(addUserForm, getUserFromSession()));
+    }
+
+    public Result addUserSubmit(){
+        Form<User> newUserForm = formFactory.form(User.class);
+        User u = newUserForm.get();
+
+        if(newUserForm.hasErrors()){
+            flash("fail", "User" + u.getEmail() + "is already in our database.");
+            return redirect(controllers.routes.HomeController.signup());
+        }
+
+        if (u.getEmail() != null){
+            u.save();
+            flash("success", "User " + u.getEmail() + " has been registered.");
+        }
+
+        return redirect(controllers.routes.HomeController.signup());
     }
 
 }

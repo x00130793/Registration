@@ -8,9 +8,10 @@ GET	/index			controllers.HomeController.index()
 
 GET     /products               controllers.HomeController.products(cat:Long ?=0L)
 
-GET     /productDetails		controllers.HomeController.productDetails
+GET     /productDetails		    controllers.HomeController.productDetails
 
-#GET 	/register		controllers.HomeController.register
+GET     /signup          controllers.HomeController.signup
+
 
 
 # An example controller showing how to use dependency injection
@@ -42,9 +43,10 @@ GET	    /admin/updateProduct/:id        controllers.AdminController.updateProduc
 ################
 # Login routes #
 ################
-GET     /login                       controllers.security.LoginController.login
-POST    /loginSubmit                 controllers.security.LoginController.loginSubmit
-GET     /logout                      controllers.security.LoginController.logout
+GET     /login                       controllers.LoginController.login
+POST    /loginSubmit                 controllers.LoginController.loginSubmit
+GET     /logout                      controllers.LoginController.logout
+POST    /addUserSubmit               controllers.HomeController.addUserSubmit
 
 
 # An example controller showing how to use dependency injection

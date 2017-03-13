@@ -1,4 +1,4 @@
-@import controllers.security.LoginController
+@import controllers.LoginController
 @import controllers.security
 @(title: String, user: models.users.User)(content: Html)
 
@@ -27,9 +27,9 @@
                 <!-- Login/ Logout  Link - Check if user logged in-->
                 <li @if(title == "Login"){class="active"}>
                     @if(user != null) {
-                        <a href="@controllers.security.routes.LoginController.logout()">Logout @user.getfName()</a>
+                        <a href="@controllers.routes.LoginController.logout()">Logout @user.getfName()</a>
                     } else {
-                        <a href="@controllers.security.routes.LoginController.login()">Login</a>
+                        <a href="@controllers.routes.LoginController.login()">Login</a>
                     }
                 </li>
             </ul>

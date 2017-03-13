@@ -1,9 +1,11 @@
 package controllers.security;
 
-import controllers.security.LoginController;
+import controllers.LoginController;
 import play.mvc.*;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.*;
+import models.users.*;
 
 import models.users.*;
 
@@ -32,6 +34,6 @@ public class AuthAdmin extends Action.Simple {
             }
         }
         ctx.flash().put("error", "Admin Login Required.");
-        return CompletableFuture.completedFuture(redirect(routes.LoginController.login()));
+        return CompletableFuture.completedFuture(redirect(controllers.routes.LoginController.login()));
     }
 }
