@@ -78,14 +78,16 @@ public class HomeController extends Controller {
 
     public Result signup(){
         Form<User> addUserForm = formFactory.form(User.class);
-        return ok(signup.render(addUserForm, getUserFromSession()));
+	
+	return ok(signup.render(addUserForm, getUserFromSession()));
+	
     }
 
     public Result addUserSubmit(){
-        Form<User> newUserForm = formFactory.form(User.class);
-        User u = newUserForm.get();
+        Form<User> addUserForm = formFactory.form(User.class).bindFromRequest();
+        User u = addUserForm.get();
 
-        if(newUserForm.hasErrors()){
+        if(addUserForm.hasErrors()){
             flash("fail", "User" + u.getEmail() + "is already in our database.");
             return redirect(controllers.routes.HomeController.signup());
         }

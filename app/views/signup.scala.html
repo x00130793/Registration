@@ -21,7 +21,19 @@
 
         <div class="form-row">
             <label>
-            @inputText(addUserForm("name"), '_label -> "Full Name",'class -> "form-control")
+            @inputText(addUserForm("fName"), '_label -> "Fisrt Name",'class -> "form-control")
+            </label>
+        </div>
+
+	<div class="form-row">
+            <label>
+            @inputText(addUserForm("lName"), '_label -> "Second Name",'class -> "form-control")
+            </label>
+        </div>
+
+	<div class="form-row">
+            <label>
+            @inputText(addUserForm("role"), '_label -> "Role",'class -> "form-control")
             </label>
         </div>
 
@@ -45,7 +57,7 @@
 
         <div class="actions">
             <input type="submit" value="Save" class="btn btn-primary">
-            <a href="@routes.LoginController.login()"><button class="btn btn-warning">Cancel</button>
+            <a href="@routes.LoginController.login()"><button class="btn btn-primary">Cancel</button>
             </a>
         </div>
 
