@@ -89,7 +89,7 @@ public class HomeController extends Controller {
 
         if(addUserForm.hasErrors()){
             flash("fail", "User" + u.getEmail() + "is already in our database.");
-            return redirect(controllers.routes.HomeController.signup());
+            return redirect(controllers.routes.LoginController.login());
         }
 
         if (u.getEmail() != null){
@@ -97,7 +97,7 @@ public class HomeController extends Controller {
             flash("success", "User " + u.getEmail() + " has been registered.");
         }
 
-        return redirect(controllers.routes.HomeController.signup());
+        return redirect(controllers.routes.LoginController.login());
     }
 
 }

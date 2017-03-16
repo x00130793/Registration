@@ -10,7 +10,7 @@ GET     /products               controllers.HomeController.products(cat:Long ?=0
 
 GET     /productDetails		    controllers.HomeController.productDetails
 
-GET     /signup          controllers.HomeController.signup
+
 
 
 

@@ -31,26 +31,29 @@ public class LoginController extends Controller {
     }
 
     // Render and return  the Login view
-    public Result login() {
+    public Result login() {	
+
+	Form<User> addUserForm = formFactory.form(User.class);
 
         // Create a form by wrapping the Product class
         // in a FormFactory form instance
         Form<Login> loginForm = formFactory.form(Login.class);
 
         // Render the Add Product View, passing the form object
-        return ok(login.render(loginForm, User.getUserById(session().get("email"))));
+        return ok(login.render(loginForm,addUserForm, User.getUserById(session().get("email"))));
     }
 
     // Handle login submit
     public Result loginSubmit() {
         // Bind form instance to the values submitted from the form
         Form<Login> loginForm = formFactory.form(Login.class).bindFromRequest();
+	Form<User> addUserForm = formFactory.form(User.class);
 
         // Check for errors
         // Uses the validate method defined in the Login class
         if (loginForm.hasErrors()) {
             // If errors, show the form again
-            return badRequest(login.render(loginForm, User.getUserById(session().get("email"))));
+            return badRequest(login.render(loginForm, addUserForm, User.getUserById(session().get("email"))));
         }
         else {
             // User Logged in successfully
@@ -67,6 +70,30 @@ public class LoginController extends Controller {
         else {
             return redirect(controllers.routes.HomeController.index());
         }
+    }
+
+	public Result signup(){
+        Form<User> addUserForm = formFactory.form(User.class);
+	
+	return ok(signup.render(addUserForm, User.getUserById(session().get("email"))));
+    }
+
+    public Result addUserSubmit(){
+        Form<User> addUserForm = formFactory.form(User.class).bindFromRequest();
+	
+        User u = addUserForm.get();
+
+        if(addUserForm.hasErrors()){
+            flash("fail", "User" + u.getEmail() + "is already in our database.");
+            return redirect(controllers.routes.LoginController.login());
+        }
+
+        if (u.getEmail() != null){
+            u.save();
+            flash("success", "User " + u.getEmail() + " has been registered.");
+        }
+
+        return redirect(controllers.routes.LoginController.login());
     }
 
     // Logout
